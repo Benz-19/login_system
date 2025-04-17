@@ -66,25 +66,22 @@ class User:
 
 
 # Sign-in
-user = User()
-user.get_user_sign_in()
-
-# def ui_component():
-#     validate = True
-#     print("Use 1 and 2 to select an option.\n[1] Login\n[2] Create an account")
-#     while validate:
-#         response = user.validate_input("Response >> ")
-#         match response:
-#             case 1:
-#                 user.get_user_sign_in() #logins the user
-#                 validate = False
-#             case 2:
-#                 name = input("Enter your name >> ")
-#                 password = user.validate_input("Password >> ")
-#                 user.create_user(name, password) #creates a new user
-#                 validate = False
-#             case _:
-#                 print("Only valid options 1,2 can be selected...")
+def ui_component():
+    validate = True
+    print("Use 1 and 2 to select an option.\n[1] Login\n[2] Create an account")
+    while validate:
+        response = user.validate_input("Response >> ")
+        match response:
+            case 1:
+                user.get_user_sign_in() #logins the user
+                validate = False
+            case 2:
+                name = input("Enter your name >> ")
+                password = user.validate_input("Password >> ")
+                user.create_user(name, password) #creates a new user
+                validate = False
+            case _:
+                print("Only valid options 1,2 can be selected...")
 
 
-# ui_component()
+ui_component()

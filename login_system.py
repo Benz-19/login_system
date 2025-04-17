@@ -66,6 +66,7 @@ class User:
 
 
 # Sign-in
+user = User()
 def ui_component():
     validate = True
     print("Use 1 and 2 to select an option.\n[1] Login\n[2] Create an account")

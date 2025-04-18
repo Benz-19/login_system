@@ -20,7 +20,6 @@ class User:
         try:
             connection.cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (name, password))
             user = connection.cursor.fetchone()
-            print("the user password in the function get_user_db_data = ", user, name, password)
             if user:
                 return user
             else:
@@ -57,9 +56,11 @@ class User:
         print(f"\n--------Welcome {name} ----------")
 
     def get_user_sign_in(self):
-        user_name = input("Username = ")
+        user_name = input("Username = ").strip().lower()
         user_password = user.validate_input("Password: ")
-        if self.login_user(user_name.capitalize(), user_password):
+        hashed_pass = self.hash_password(user_password)
+
+        if self.login_user(user_name.capitalize(), hashed_pass):
             self.user_dashboard(user_name.strip())
         else:
             print("Login failed... Quiting...")

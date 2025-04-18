@@ -20,11 +20,7 @@ class User:
         try:
             connection.cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (name, password))
             user = connection.cursor.fetchone()
-            if user:
-                return user
-            else:
-                print ("no user with this data")
-                exit()
+            return user
         except UserWarning as e:
             print(f"Something went wrong, no user data found... ErrorType: {e}")
 
@@ -32,7 +28,8 @@ class User:
     def login_user(self, name, password):
         try:
             user = self.get_user_db_data(name, password)
-            if user["username"] == name and user["password"] == str(password):
+            print("The user in the func = ",user)
+            if user:
                 return True
             else:
                 return False
@@ -57,7 +54,7 @@ class User:
 
     def get_user_sign_in(self):
         user_name = input("Username = ").strip().lower()
-        user_password = user.validate_input("Password: ")
+        user_password = self.validate_input("Password: ")
         hashed_pass = self.hash_password(user_password)
 
         if self.login_user(user_name.capitalize(), hashed_pass):
@@ -68,24 +65,24 @@ class User:
 
 
 # Sign-in
-user = User()
+# user = User()
 
-def ui_component():
-    validate = True
-    print("Use 1 and 2 to select an option.\n[1] Login\n[2] Create an account")
-    while validate:
-        response = user.validate_input("Response >> ")
-        match response:
-            case 1:
-                user.get_user_sign_in() #logins the user
-                validate = False
-            case 2:
-                name = input("Enter your name >> ")
-                password = user.validate_input("Password >> ")
-                user.create_user(name, password) #creates a new user
-                validate = False
-            case _:
-                print("Only valid options 1,2 can be selected...")
+# def ui_component():
+#     validate = True
+#     print("Use 1 and 2 to select an option.\n[1] Login\n[2] Create an account")
+#     while validate:
+#         response = user.validate_input("Response >> ")
+#         match response:
+#             case 1:
+#                 user.get_user_sign_in() #logins the user
+#                 validate = False
+#             case 2:
+#                 name = input("Enter your name >> ")
+#                 password = user.validate_input("Password >> ")
+#                 user.create_user(name, password) #creates a new user
+#                 validate = False
+#             case _:
+#                 print("Only valid options 1,2 can be selected...")
 
 
-ui_component()
+# ui_component()

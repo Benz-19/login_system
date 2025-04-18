@@ -20,6 +20,7 @@ class User:
         try:
             connection.cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (name, password))
             user = connection.cursor.fetchone()
+            print("the user password in the function get_user_db_data = ", user, name, password)
             if user:
                 return user
             else:
@@ -67,6 +68,7 @@ class User:
 
 # Sign-in
 user = User()
+
 def ui_component():
     validate = True
     print("Use 1 and 2 to select an option.\n[1] Login\n[2] Create an account")

@@ -3,6 +3,7 @@ from login_system import User
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def home():
     return render_template('login.html')

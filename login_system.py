@@ -18,8 +18,8 @@ class User:
 
     def get_user_db_data(self, name, password):
         try:
-            connection.cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (name, password))
-            user = connection.cursor.fetchone()
+            user = connection.cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (name, password))
+            connection.cursor.fetchone()
             return user
         except UserWarning as e:
             print(f"Something went wrong, no user data found... ErrorType: {e}")
@@ -28,7 +28,6 @@ class User:
     def login_user(self, name, password):
         try:
             user = self.get_user_db_data(name, password)
-            print("The user in the func = ",user)
             if user:
                 return True
             else:

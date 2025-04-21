@@ -10,9 +10,9 @@ def home():
 @app.route('/login', methods=['POST'])
 def login():
     user = User()
-    username = request.form['username'].strip().lower()
+    username = request.form['username'].strip().capitalize()
     password = request.form['password']
-    hashed_pass = password
+    hashed_pass = user.hash_password(password)
 
     print(username, hashed_pass)
     if user.login_user(username.capitalize(), hashed_pass):

@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for,session
 from login_system import User
 
 app = Flask(__name__)
+
+app.secret_key = '123456789'
 
 @app.route('/')
 def home():
@@ -16,13 +18,18 @@ def login():
 
     print(username, hashed_pass)
     if user.login_user(username.capitalize(), hashed_pass):
-        dashboard(username)
+        session['username'] = username
+        return redirect(url_for('dashboard'))
     else:
         return "Login failed"
 
-def dashboard(username):
-        f"<h1>Welcome, {username}</h1>"
-        return render_template('dashboard.html')
+@app.route('/dashboard')
+def dashboard():
+        username = session['username']
+        if username:
+            return render_template('dashboard.html', username = username)
+        else:
+            return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True)

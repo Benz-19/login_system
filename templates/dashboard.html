@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0px;
+    }
+
+    header {
+        background-color: yellow;
+        height: 60px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 3%;
+    }
+
+    nav .top-nav-center ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    nav .top-nav-center ul li {
+        margin: 0 8px;
+        list-style-type: none;
+    }
+
+    nav button {
+        width: 90px;
+        padding: 7px 5px;
+        border: 1px solid white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.9s ease-in-out;
+    }
+
+    nav button:hover {
+        background-color: red;
+        border-color: red;
+    }
+</style>
+
+<body>
+
+</body>
+<header>
+    <nav>
+        <div></div>
+        <div class="top-nav-center">
+            <ul>
+                <li>Home</li>
+                <li>Discover</li>
+                <li>Apply</li>
+                <li>Account</li>
+            </ul>
+        </div>
+        <div>
+            <a href="/logout">
+                <button>Logout</button>
+            </a>
+        </div>
+    </nav>
+</header>
+
+</html>

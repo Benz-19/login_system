@@ -16,9 +16,13 @@ def login():
 
     print(username, hashed_pass)
     if user.login_user(username.capitalize(), hashed_pass):
-        return f"<h1>Welcome, {username}</h1>"
+        dashboard(username)
     else:
         return "Login failed"
+
+def dashboard(username):
+        f"<h1>Welcome, {username}</h1>"
+        return render_template('dashboard.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
